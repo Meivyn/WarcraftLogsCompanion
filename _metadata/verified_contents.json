@@ -89,7 +89,6 @@
     "scripts/services/iframe-navigation-service.js": "debb200718f1d2ca4edf763ae000b7f3c04a4559f4735d953cefc646dd3ceedb",
     "scripts/services/storage-service.js": "18442f7e126d950859976242f19c375de0f5c3ddc1b669d0997f411399e29ec0",
     "scripts/services/windows-service.js": "e13cacfc3e17dee5770bba98fd0da89e80634e9d520fffb35a89db85aa3a2684",
-    "scripts/services/ad-service.js": "202a51cae42c17b5048d1327c5a9e8b98e0c63908c0e0fa43d305fa7f92fe342",
     "scripts/services/utils-service.js": "1c9e51762cb77000992030973bb7d727913fa90370abe0d1ab592860681227ff",
     "scripts/services/drag-service.js": "f1c416765a979b98848d6ea05564a07d8b5ea9ca1df0788a63b1166a8b45ee12",
     "scripts/common/uploader-builder.js": "b9705edb13b5db2cd88cf0ab66c85d04436173e1095abbca95931f1ba77b3acd",

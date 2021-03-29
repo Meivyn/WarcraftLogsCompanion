@@ -2,15 +2,13 @@ define([
   '../BaseAppView.js',
   "../../scripts/constants/window-names.js",
   "../../scripts/services/windows-service.js",
-  "../../scripts/services/ad-service.js"
-], function (BaseAppView, WindowNames, WindowsService, AdService) {
+], function (BaseAppView, WindowNames, WindowsService) {
 
   class ReportsView extends BaseAppView {
     constructor(controller) {
       super();
 
       this._controller = controller;
-      this._adService = new AdService();
 
       this._haveReports = false;
 
@@ -26,12 +24,6 @@ define([
     onLoginSuccessful(user) {
       this._mainWindow.loadRecentReports();
       this._haveReports = true;
-
-      if (user && user.isSubscribed) {
-        this._adService.hideAd();
-      } else {
-        this._adService.showAd();
-      }
     }
 
     reloadButtonClicked(evt)
@@ -44,8 +36,6 @@ define([
       document.getElementById('recent-reports-contents').innerHTML = ''
       document.getElementById('report-frame').src = './blank.html';
       this._haveReports = false;
-
-      this._adService.showAd();
     }
 
     reportsUpdated(reports) {

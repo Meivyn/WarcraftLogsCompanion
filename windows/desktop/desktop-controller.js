@@ -4,8 +4,7 @@ define([
   '../../scripts/constants/window-names.js',
   '../BaseAppView.js',
   "../../scripts/services/windows-service.js",
-  "../../scripts/services/ad-service.js",
-], function (DesktopViewBuilder, BackendState, WindowNames, BaseAppView, WindowService, AdService) {
+], function (DesktopViewBuilder, BackendState, WindowNames, BaseAppView, WindowService) {
 
   class DesktopController {
     constructor() {
@@ -15,7 +14,7 @@ define([
         window.inGame = result.window.name.endsWith('in_game') || result.window.name === WindowNames.LIVELOG;
 
         let mainWindow = overwolf.windows.getMainWindow();
-        const DesktopView = DesktopViewBuilder(BaseAppView, WindowNames, WindowService, AdService)
+        const DesktopView = DesktopViewBuilder(BaseAppView, WindowNames, WindowService)
         this.desktopView = new DesktopView(mainWindow);
 
         const {

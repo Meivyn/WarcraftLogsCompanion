@@ -2,15 +2,13 @@ define([
   '../BaseAppView.js',
   "../../scripts/constants/window-names.js",
   "../../scripts/services/windows-service.js",
-  "../../scripts/services/ad-service.js",
-], function (BaseAppView, WindowNames, WindowsService, AdService) {
+], function (BaseAppView, WindowNames, WindowsService) {
 
   class CharactersView extends BaseAppView {
     constructor(controller) {
       super();
 
       this._controller = controller;
-      this._adService = new AdService();
 
       this._mainWindow = overwolf.windows.getMainWindow();
       
@@ -44,18 +42,10 @@ define([
     onLoginSuccessful(user) {
       document.getElementById('user-characters').innerHTML = this._mainWindow._controller.buildCharacterListFromJSON();
       this._mainWindow.loadRecentCharacters();
-
-      if (user && user.isSubscribed) {
-        this._adService.hideAd();
-      } else {
-        this._adService.showAd();
-      }
     }
 
     loggedOut() {
       document.getElementById('user-characters').innerHTML = '';
-
-      this._adService.showAd();
     }
 
     loadUserCharacterByTarget(event) {

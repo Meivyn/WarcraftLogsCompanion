@@ -1,5 +1,5 @@
 define(function () {
-    return function (BaseAppView, WindowNames, WindowsService, AdService) {
+    return function (BaseAppView, WindowNames, WindowsService) {
          
 function printDuration(duration){
 	duration = Math.floor(duration / 1000)
@@ -84,7 +84,6 @@ function createBrowserWindow(url, size, title, webPreferences) {
       this._mainWindow.reportUIMode = this._mainWindow.reportUIMode ||  this._reportUIMode;
 
       this._user = {};
-      this._adService = new AdService();
   
       if (!window.inGame)
         this._mainWindow.game.desktopContentLoaded?.(document);
@@ -233,10 +232,6 @@ function createBrowserWindow(url, size, title, webPreferences) {
         this.selectRegion(user.preferredRegion.id, true);
       }
 
-      if (user && user.isSubscribed) {
-        this._adService.hideAd();
-      }
-
       this._user = user;
     }
 
@@ -245,19 +240,6 @@ function createBrowserWindow(url, size, title, webPreferences) {
     }
 
     async selectReportPage(page, onlyUpdateInGameWindow) {
-      const pageShouldNotShowAd =
-        page === "fights" || page === "first" || page === "login" || page === "language" || page === "version" ||
-        ((page === "progress" || page === "deletion-archival") && this._reportUIMode === "livelog");
-
-      const userIsSubscribed = this._user && this._user.isSubscribed;
-
-      const hideAdsInDesktopView = true;
-
-      if (hideAdsInDesktopView || pageShouldNotShowAd || userIsSubscribed)
-        this._adService.hideAd();
-      else
-        this._adService.showAd();
-
       document.getElementById('report-' + this._currentPage + "-page").style.display = 'none';
       document.getElementById('report-' + page + "-page").style.display = 'block';
 
