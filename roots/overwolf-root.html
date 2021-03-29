@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="../../css/warcraft/general.css">
+  <link rel="stylesheet" href="../../css/warcraft/desktop.css">
+  <link rel="stylesheet" href="../../css/header.css">
+  <script src="./init-header.js"></script>
+  <script src="../../scripts/3rdparty/jquery.min.js"></script>
+  <script src="../../scripts/3rdparty/jquery-ui.min.js"></script>
+  <script src="../../scripts/3rdparty/smartmenus.min.js"></script>  
+</head>
+<body>
+<!-- -------------------------------- Header ------------------------------- -->
+<header class="app-header">
+  <img width=24 height=24 style="margin-right:5px" src="../../icons/icon.png">
+  <h1><script>document.write(mainWindow.game.appTitle())</script></h1>
+  <div class="window-controls-group">
+    <button class="icon window-control" id="minimizeButton">
+      <svg>
+          <use xlink:href="../../img/header_icons.svg#window-control_minimize" />
+      </svg>
+    </button>
+    <button class="icon window-control window-control-close" id="closeButton">
+      <svg>
+          <use xlink:href="../../img/header_icons.svg#window-control_close" />
+      </svg>
+    </button>
+  </div>
+</header>
+
+<!-- BEGIN -->
+<!-- END --> 
+
+<script src="../../lib/require.js"></script>
+<script src="./init.js" ></script>
+
+<script>
+$(function() {
+	$('#header-bar, #guilds-and-privacy-menu').smartmenus({
+		showOnClick: true,
+		mainMenuSubOffsetX: -1,
+		subMenusSubOffsetX: 10,
+		subMenusSubOffsetY: 0,
+		subMenusMaxWidth: "400px"
+	});
+	
+});
+
+
+</script>
+
+</body>
+</html>

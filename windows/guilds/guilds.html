@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="../../css/warcraft/general.css">
+  <link rel="stylesheet" href="../../css/header.css">
+  <link rel="stylesheet" href="../../css/guilds.css">
+  <script>
+    let mainWindow = overwolf.windows.getMainWindow();
+    let lang = mainWindow.lang;
+    let game = mainWindow.game;
+    let storage = mainWindow.storage;
+    document.title = lang.trans('guild_viewer');
+  </script>
+  <script src="../../scripts/3rdparty/jquery.min.js"></script>
+  <script src="../../scripts/3rdparty/jquery-ui.min.js"></script>
+  <script src="../../scripts/3rdparty/smartmenus.min.js"></script>  
+</head>
+<body>
+<!-- -------------------------------- Header ------------------------------- -->
+
+<header class="app-header">
+  <h1 style="padding-left:20px"><script>document.write(lang.trans('guild_viewer'))</script></h1>
+  <div class="window-controls-group">
+   <button class="icon window-control window-control-close" id="closeButton">
+      <svg>
+          <use xlink:href="/img/header_icons.svg#window-control_close" />
+      </svg>
+    </button>
+  </div>
+
+</header>
+
+<!-- --------------------------------- Main -------------------------------- -->
+<main>
+  
+ 
+
+  <div id="main-and-ad-box">
+    <div id="main"> 
+      
+<ul id="search-bar" class="sm sm-black">
+
+  <div class="guild-tab window-controls-group">
+    <button class="icon window-control" id="back-button">
+      <span class="zmdi zmdi-arrow-left"></span>
+    </button>
+    <button class="icon window-control" id="forward-button">
+      <span class="zmdi zmdi-arrow-right"></span>
+    </button>
+    <button class="icon window-control" id="refresh-button">
+      <span class="zmdi zmdi-refresh"></span>
+    </button>
+  </div>
+
+  <li id="searchfield-menu">
+    <div id="searchfield-mini-wrapper" class="searchfield-mini-wrapper">
+      <form id="search-form" target="character-frame" style="margin:0;width:100%" accept-charset="utf-8" method=get>
+        <input class="searchfield-mini" id="searchfield-mini" name="term" placeholder="Enter a guild name"> 
+        <span onclick="this.parentNode.submit()" class="searchbutton-mini" id="searchbutton-mini">
+          <span class="zmdi zmdi-search search-white searchbutton-mini-image"></span>
+        </span>
+        <div id="autocomplete-mini-results" >
+          
+       </div>
+      </form>
+    </div> 
+  </li>
+</ul>
+
+      <iframe src="./blank.html" id="guild-frame" name="guild-frame" sandbox="allow-scripts allow-modals allow-forms allow-same-origin"></iframe>
+   </div>
+    <div id="right-sidebar">
+      <div id="user-guilds"></div>
+      <div id="ad"></div>
+    </div>
+  </div>
+
+</main>
+
+<script src="../../lib/require.js"></script>
+<script>
+  require(['guilds-controller'], function (GuildsController) {
+    // console.log(`[INIT] guilds module loaded`);
+    const guildsController = new GuildsController();
+    guildsController.run();
+  }, function (error) {
+    console.log(`[INIT] failed to load guilds module ${error}`);
+  });
+</script>
+
+<script>
+
+$(function() {
+		$("#searchfield-mini").autocomplete({
+	      source: game.origin() + "/search/autocomplete?type=guilds", minLength:2, autoFocus:true, appendTo: "#autocomplete-mini-results", select: function( event, ui ) { window._controller.loadGuild(ui.item.link); }
+	    }).autocomplete("instance")._renderItem = function( ul, item ) {
+		    var item = $('<div class="master-autocomplete-item"><div class="label ' + item.labelClass + '">' + item.label + '</div><div class="server">' + item.server + '</div><div class="type">' + item.type + '</div></div>');
+			  return $("<li>").append(item).appendTo(ul);
+        };
+});
+</script>
+
+<script>document.body.setAttribute('version', mainWindow.storage.version())</script>
+       
+</body>
+</html>

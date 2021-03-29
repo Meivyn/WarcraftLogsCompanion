@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="../../css/warcraft/general.css">
+  <link rel="stylesheet" href="../../css/warcraft/desktop.css">
+  <link rel="stylesheet" href="../../css/header.css">
+  <script>
+    window.inGame = true;
+    let mainWindow = overwolf.windows.getMainWindow();
+    let lang = mainWindow.lang;
+    let game = mainWindow.game;
+    let storage = mainWindow.storage;
+    document.title = lang.trans('livelog_button');
+  </script>
+  <script src="../../scripts/3rdparty/jquery.min.js"></script>
+  <script src="../../scripts/3rdparty/jquery-ui.min.js"></script>
+  <script src="../../scripts/3rdparty/smartmenus.min.js"></script>
+</head>
+<body class="in-game">
+<!-- -------------------------------- Header ------------------------------- -->
+
+<header class="app-header">
+  <h1 style="padding-left:5px"><script>document.write(lang.trans('livelog_button'))</script></h1>
+  <div class="window-controls-group">
+    <button class="icon window-control window-control-close" id="closeButton">
+      <svg>
+          <use xlink:href="/img/header_icons.svg#window-control_close" />
+      </svg>
+    </button>
+  </div>
+
+</header>
+
+<ul id="header-bar" style="clear:both" class="sm sm-black">
+<li id="language-menu" class="right bar-item">
+<a id="language-link"><script>document.write(game.locales()[lang.language()])</script></a>
+<ul class="levels" id="language-submenu">
+  <script>
+    for (var i in mainWindow.game.locales()) {
+      if (mainWindow.lang.language() == i)
+        selectedLanguage = i
+      document.write(' <li><a href="#" id="language-' + i + '" ' + (mainWindow.lang.language() == i ? 'selected="true"' : '') + ' languageid="' + i + '">' + mainWindow.game.locales()[i] + '</a>')
+  }
+  </script>
+</ul>
+</li>
+
+  <li class="right"><a id="logout-link" class=" bar-item" style="display:none" href=""><script>document.write(lang.trans('logout'))</script></a></li>
+
+  <li class="right"><a id="settings-link" class=" bar-item" href="#"><script>document.write(lang.trans('settings'))</script></a></li>
+
+  <li class="right"><a id="help-link" class=" bar-item" href="#" target="_blank"><script>document.write(lang.trans('help'))</script></a></li>
+
+<div style="clear:both"></div>
+</ul>
+<!-- --------------------------------- Main -------------------------------- -->
+<main>
+  <div id="background"></div>
+
+  <div id="main-and-ad-box">
+  <div id="main">
+
+        <div id="content">
+
+
+        <div id="startup-panel">
+	        <img id="button-spinny" src="../../img/spinny.gif">
+        </div>
+
+        <div id="logincontent" style="display:none">
+
+
+        <form method="POST" accept-charset="UTF-8" id="login-form">
+        <table cellspacing=10 class="dialog-table">
+                <tr style="vertical-align:middle"><td style="text-align:right">
+                <label for="email"><script>document.write(lang.trans('email'))</script></label>
+                <td><input class="login-field" type="text" name="email" id="email">
+                <tr style="vertical-align:middle"><td style="text-align:right"><label for="password"><script>document.write(lang.trans('password'))</script></label>
+                <td><input class="login-field" type="password" name="password" id="password">
+                <tr><td></td>
+                  <td><button id="login-button" class="big-button right" type="submit"><script>document.write(lang.trans('login'))</script></button>
+
+                  </table>
+        </form>
+
+        <div id="account-links">
+        <a href="#" id="forgot-password-link" target="_blank"><script>document.write(lang.trans('forgot_password'))</script></a>
+                  <a href="#" id="register-link" target="_blank"><script>document.write(lang.trans('create_account'))</script></a>
+        </div>
+
+        </div>
+
+        <div id="reportcontent" style="display:none">
+
+        <div id="report-first-page">
+
+          <div id="versions-container">
+            <script>
+              for (var i in mainWindow.game.versions()) {
+                document.write(' <span id="version-' + i + '" class="version-tab" ' + (mainWindow.storage.version() == i ? 'selected="true"' : '') + ' versionid="' + i + '">' + lang.trans(mainWindow.game.versions()[i]) + '</span>')
+              }
+            </script>
+            </div>
+
+            <div id="version-info"></div>
+
+        <div id="report-first-container">
+          <div class="report-first-option" id="upload-log-button">
+            <div class="report-first-icon zmdi zmdi-upload"></div>
+            <div class="report-first-label"><script>document.write(lang.trans('upload_button'))</script></div>
+            <div class="report-first-desc"><script>document.write(lang.trans('upload_desc'))</script></div>
+          </div>
+          <div class="report-first-option" id="live-log-button">
+            <div class="report-first-icon zmdi zmdi-time-interval"></div>
+            <div class="report-first-label"><script>document.write(lang.trans('livelog_button'))</script></div>
+            <div class="report-first-desc"><script>document.write(lang.trans('livelog_desc'))</script></div>
+          </div>
+          <div class="report-first-option" id="split-log-button">
+            <div class="report-first-icon zmdi zmdi-arrow-split"></div>
+            <div class="report-first-label"><script>document.write(lang.trans('splitlog_button'))</script></div>
+            <div class="report-first-desc"><script>document.write(lang.trans('splitlog_desc'))</script></div>
+          </div>
+        </div>
+
+        </div>
+
+        <div id="report-upload-page" style="display:none">
+
+          <div id="upload-container">
+            <div id="file-chooser-description"><script>document.write(lang.trans('choose_file_for_upload'))</script>
+            </div>
+            <div id="split-file-chooser-description" style="display:none"><script>document.write(lang.trans('choose_file_for_split'))</script></div>
+            <div id="file-chooser-row"><div class="directory-file" id="file-chooser"><span id="logfile" style="display:none"></span><span id="logfile-display"></span> <button class="directory-button big-button right"><script>document.write(lang.trans('choose_button'))</script></button></div>
+            </div>
+            <div id="directory-chooser-description" style="display:none"><span id="live-log-descriptive-text"></span>
+
+<script>
+  document.write(lang.trans("choose_livelog_directory_" + game.prefix()))
+</script>
+</span>
+        </div>
+        <div id="directory-chooser-row" style="display:none"><div id="directory-chooser" class="directory-file"><span id="directory" style="display:none"></span><span id="directory-display"></span> <button class="directory-button big-button right"><script>document.write(lang.trans('choose_button'))</script></button></div>
+        </div>
+        <div id="guild-chooser-description"><script>document.write(lang.trans('choose_guild'))</script>
+        </div>
+
+        <ul id="guilds-and-privacy-menu" class="sm sm-black">
+          <div id="guilds-teams-and-regions-container"></div>
+
+
+          <li  id="privacy-container">
+            <a><span id="privacy-selection-text"></span></a>
+            <ul id="privacy-contents">
+              <li><a id="privacy-0" privacyid="0"><script>document.write(lang.trans('public_report'))</script></a>
+              <li><a id="privacy-1" privacyid="1"><script>document.write(lang.trans('private_report'))</script></a>
+              <li><a id="privacy-2" privacyid="2"><script>document.write(lang.trans('unlisted_report'))</script></a>
+            </ul>
+          </li>
+
+
+         </ul>
+
+        <div id="description-container">
+          <div id="description-label" style="white-space:nowrap"><script>document.write(lang.trans('description_report_label'))</script>
+          </div>
+          <input style="flex:1; width:0" type="text" id="description" name="description">
+
+        </div>
+
+        <div>
+          <div id="fight-chooser-container" class="left" style="vertical-align:middle;"><input type=checkbox id="fight-chooser"> <label for="fight-chooser"></label>  <label for="fight-chooser"><script>document.write(lang.trans('select_specific_raids'))</script></label>
+          </div>
+          <div id="livelog-entirefile-container" class="left" style="display:none; vertical-align:middle;"><input type=checkbox id="livelog-entirefile-chooser"> <label for="livelog-entirefile-chooser"></label>  <label for="livelog-entirefile-chooser"><script>document.write(lang.trans('livelog_entirefile'))</script></label>
+          </div>
+          <button id="upload-button" class="big-button right"><script>document.write(lang.trans('go_button'))</script></button>
+        </div>
+        </div>
+        </div>
+
+
+
+
+        <div id="report-progress-page" style="display:none; padding:10px" class="dialog-table">
+
+        <div id="logfile-progress-container">
+        <div style="margin:8px 0"><span id="logfile-progress-status"><script>document.write(lang.trans('proessing_log_file'))</script></span> <span id="logfile-progress-number"></span>...</div>
+        <div id="logfile-progress" class="progress-bar"><div class="progress-interior"></div></div>
+        </div>
+
+        <p id="livelog-progress-status" style="display:none">
+
+        </p>
+
+        <div id="upload-progress-container" style="visibility:hidden">
+        <div style="margin:8px 0"><span id="upload-progress-status"><script>document.write(lang.trans('uploading_fights'))</script></span> <span id="upload-progress-number"></span>...</div>
+        <div id="upload-progress" class="progress-bar"><div class="progress-interior"></div></div>
+        </div>
+
+        <p style="text-align:center"><button id="cancelbutton" class="big-button" style="display:none" type=button><script>document.write(lang.trans('cancel_button'))</script></button>
+        <button class="big-button as-wide-as-needed" style="display:none" id="viewlivelogingamebutton"><script>document.write(lang.trans('view_report_in_game_button'))</script></button>
+        <button class="big-button as-wide-as-needed" style="display:none" id="viewlivelogbutton"><script>document.write(lang.trans('view_report_in_browser_button'))</script></button>
+        <button class="big-button wide" style="display:none" id="endlivelogbutton"><script>document.write(lang.trans('stop_button'))</script></button>
+        </p>
+        </div>
+
+        <div id="report-update-page" style="display:none; padding:10px" class="dialog-table">
+
+        <div id="update-progress-container">
+        <div style="margin:8px 0"><span id="update-progress-status"><script>document.write(lang.trans('downloading_update'))</script></span> <span id="update-progress-number"></span>...</div>
+        <div id="update-progress" class="progress-bar"><div class="progress-interior"></div></div>
+        </div>
+
+        </div>
+
+        <div id="report-deletion-archival-page" style="display:none;" class="dialog-table">
+          <div id="report-deletion-archival-container">
+            <div>
+              <div style="margin-bottom:1em"><span id="view-report-description"><script>document.write(lang.trans('view_report_desc'))</script></span> </div>
+              <p style="text-align:center" id="view-report-container">
+                <button type=button id="viewlogingamebutton" class="big-button as-wide-as-needed"><script>document.write(lang.trans('view_report_in_game_button'))</script></button>
+                <button type=button id="viewlogbutton" class="big-button as-wide-as-needed"><script>document.write(lang.trans('view_report_in_browser_button'))</script></button>
+              </p>
+              <div id="deletion-archival-ui">
+
+                <div id="deletion-archival-ui-options">
+                  <div id="deletion-archival-ui-options-description"><script>document.write(lang.trans('delete_or_archive_desc'))</script></div>
+                  <p style="text-align:center">
+                    <button style="min-width:250px" type=button id="deletelogbutton"><script>document.write(lang.trans('delete_log_button'))</script></button>
+                    <button style="min-width:250px" type=button id="archivelogbutton"><script>document.write(lang.trans('archive_log_button'))</script></button>
+                  </p>
+                </div>
+
+                <div id="deletion-archival-ui-deletion-options">
+                  <div><script>document.write(lang.trans('confirm_deletion'))</script></div>
+                  <p style="text-align:center">
+                    <button style="min-width:250px" type=button id="confirm-deletion-button"><script>document.write(lang.trans('yes'))</script></button>
+                    <button style="min-width:250px" type=button id="cancel-deletion-button"><script>document.write(lang.trans('no'))</script></button>
+                  </p>
+                </div>
+
+                <div id="deletion-archival-ui-archival-options">
+                  <div><script>document.write(lang.trans('confirm_archival'))</script></div>
+                  <p style="text-align:center">
+                    <button style="min-width:250px" type=button id="confirm-archival-button"><script>document.write(lang.trans('yes'))</script></button>
+                    <button style="min-width:250px" type=button id="cancel-archival-button"><script>document.write(lang.trans('no'))</script></button>
+                  </p>
+                </div>
+
+                <div id="deletion-archival-ui-deletion-success-message"><script>document.write(lang.trans('deletion_success'))</script></div>
+                <div id="deletion-archival-ui-archival-success-message"><script>document.write(lang.trans('archival_success'))</script></div>
+
+                <p style="text-align: center; margin-bottom: 0;">
+                  <button type=button id="donebutton" class="big-button wide"><script>document.write(lang.trans('done_button'))</script></button>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+  </div>
+
+          <div id="errorblock" style="display: none;" class="ui-widget ui-corner-all ui-state-error">
+            <div>
+              <strong>
+                <script>document.write(lang.trans('error_label'))</script>
+              </strong>
+              <span id="errortext"></span>
+            </div>
+          </div>
+
+          <div id="warningblock" style="display: none;" class="ui-widget ui-corner-all ui-state-error">
+            <div>
+              <strong>
+                <script>document.write(lang.trans('warning_label'))</script>
+              </strong>
+              <span id="warningtext"></span>
+            </div>
+          </div>
+
+    <script>document.body.setAttribute('version', mainWindow.storage.version())</script>
+</div>
+<div id="ad" style="visibility:hidden;width:0"></div>
+</div>
+
+</main>
+
+<script src="../../lib/require.js"></script>
+<script>
+  require(['desktop-controller'], function (DesktopController) {
+    // console.log(`[INIT] desktop module loaded`);
+    const desktopCntroller = new DesktopController();
+    desktopCntroller.run();
+  }, function (error) {
+    console.log(`[INIT] failed to load desktop module ${error}`);
+  });
+</script>
+
+<script>
+$(function() {
+	$('#header-bar, #guilds-and-privacy-menu').smartmenus({
+		showOnClick: true,
+		mainMenuSubOffsetX: -1,
+		subMenusSubOffsetX: 10,
+		subMenusSubOffsetY: 0,
+		subMenusMaxWidth: "400px"
+	});
+
+});
+
+
+</script>
+
+</body>
+</html>

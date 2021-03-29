@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="../../css/warcraft/general.css">
+  <link rel="stylesheet" href="../../css/header.css">
+  <link rel="stylesheet" href="../../css/characters.css">
+  <script>
+    let mainWindow = overwolf.windows.getMainWindow();
+    let lang = mainWindow.lang;
+    let game = mainWindow.game;
+    let storage = mainWindow.storage;
+    document.title = lang.trans('character_viewer');
+  </script>
+  <script src="../../scripts/3rdparty/jquery.min.js"></script>
+  <script src="../../scripts/3rdparty/jquery-ui.min.js"></script>
+  <script src="../../scripts/3rdparty/smartmenus.min.js"></script>  
+</head>
+<body>
+
+<!-- -------------------------------- Header ------------------------------- -->
+
+<header class="app-header">
+  <h1 style="padding-left:20px">
+    <script>document.write(lang.trans('character_viewer'))</script>
+  </h1>
+  <div class="window-controls-group">
+    <button class="icon window-control window-control-close" id="closeButton">
+      <svg>
+        <use xlink:href="/img/header_icons.svg#window-control_close"/>
+      </svg>
+    </button>
+  </div>
+</header>
+
+<!-- --------------------------------- Main -------------------------------- -->
+<main>
+
+  <div id="main-and-ad-box">
+    <div id="main"> 
+      
+<ul id="search-bar" class="sm sm-black">
+
+  <div class="character-tab window-controls-group">
+    <button class="icon window-control" id="back-button">
+      <span class="zmdi zmdi-arrow-left"></span>
+    </button>
+    <button class="icon window-control" id="forward-button">
+      <span class="zmdi zmdi-arrow-right"></span>
+    </button>
+    <button class="icon window-control" id="refresh-button">
+      <span class="zmdi zmdi-refresh"></span>
+    </button>
+  </div>
+
+  <li id="searchfield-menu">
+    <div id="searchfield-mini-wrapper" class="searchfield-mini-wrapper">
+      <form id="search-form" target="character-frame" style="margin:0;width:100%" accept-charset="utf-8" method=get>
+        <input class="searchfield-mini" id="searchfield-mini" name="term" placeholder="Enter a character name"> 
+        <span onclick="this.parentNode.submit()" class="searchbutton-mini" id="searchbutton-mini">
+          <span class="zmdi zmdi-search search-white searchbutton-mini-image"></span>
+        </span>
+        <div id="autocomplete-mini-results" >
+          
+       </div>
+      </form>
+    </div> 
+  </li>
+
+  <div class="character-tab" id="raids-tab" data-raid-type="raids" style="display:none"><script>document.write(lang.trans('raids'))</script></div>
+  <div class="character-tab" id="dungeons-tab" data-raid-type="dungeons" style="display:none"><script>document.write(lang.trans('mythic_plus_dungeons'))</script></div>
+
+  <div class="character-tab" id="rankings-tab" style="display:none"><script>document.write(lang.trans('rankings'))</script></div>
+  <div class="character-tab" id="gear-tab" style="display:none"><script>document.write(lang.trans('gear'))</script></div>
+
+</ul>
+
+      <iframe src="./blank.html" id="character-frame" name="character-frame" sandbox="allow-scripts allow-modals allow-forms allow-same-origin"></iframe>
+   </div>
+    <div id="right-sidebar">
+      <div id="right-sidebar-content">
+        <div id="group-applicants">
+          <div id="group-applicants-caption">
+            <script>document.write(lang.trans(game.groupApplicantsTitle?.() || 'group_applicants'))</script>
+            <div id="group-applicants-badge"><div id="group-applicants-badge-contents"></div></div>
+          </div>
+          <div id="group-applicants-settings">
+            <div id="group-applicants-info">
+              Character lookup uses your preferred region.
+            </div>
+            <div id="group-applicants-raid-type-options"></div>
+            <div id="group-applicants-sort-options"></div>
+          </div>
+          <div id="group-applicants-contents"></div>
+        </div>
+        <div id="user-characters"></div>
+        <div id="recent-characters" style="display: none"><div id="recent-characters-caption"><script>document.write(lang.trans('recent_characters'))</script></div>
+          <div id="recent-characters-contents"></div>
+        </div>
+      </div>
+      <div id="ad"></div>
+    </div>
+  </div>
+
+</main>
+
+<script src="../../lib/require.js"></script>
+<script>
+  require(['characters-controller'], function (CharactersController) {
+    // console.log(`[INIT] characters module loaded`);
+    const charactersController = new CharactersController();
+    charactersController.run();
+  }, function (error) {
+    console.log(`[INIT] failed to load characters module ${error}`);
+  });
+</script>
+
+<script>
+$(function() {
+		$("#searchfield-mini").autocomplete({
+	      source: game.origin() + "/search/autocomplete?type=characters", minLength:2, autoFocus:true, appendTo: "#autocomplete-mini-results", select: function( event, ui ) { window._controller.loadCharacter(ui.item.link); }
+	    }).autocomplete("instance")._renderItem = function( ul, item ) {
+		    var item = $('<div class="master-autocomplete-item"><div class="label ' + item.labelClass + '">' + item.label + '</div><div class="server">' + item.server + '</div><div class="type">' + item.type + '</div></div>');
+			  return $("<li>").append(item).appendTo(ul);
+        };
+});
+</script>
+
+<script>document.body.setAttribute('version', mainWindow.storage.version())</script>
+       
+</body>
+</html>

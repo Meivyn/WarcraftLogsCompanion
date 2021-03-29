@@ -1,0 +1,38 @@
+@import url('../desktop.css');
+
+@font-face {
+    font-family: 'ralewayregular';
+    src: url('../../fonts/Raleway-Regular-webfont.eot');
+    src: url('../../fonts/Raleway-Regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../../fonts/Raleway-Regular-webfont.woff') format('woff'),
+         url('../../fonts/Raleway-Regular-webfont.ttf') format('truetype'),
+         url('../../fonts/Raleway-Regular-webfont.svg#ralewayregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+#background { background: url(../../img/warcraft/header-sl-bg.jpg) center center; opacity:0.3; }
+
+#logoimage {
+	content: url('../../img/warcraft/header-logo.png');
+	width:72px;
+	height:72px;
+	margin-right:22px;
+	vertical-align:-14px;
+}
+
+#title-top {
+	height:72px; overflow:hidden; white-space:nowrap; text-shadow:2px 2px 10px black;
+}
+
+#title-top-first {
+	color:rgb(230,230,230);
+}
+
+#title-top-second {
+	color:rgb(230,230,230);
+}
+
+#logo-font {
+	font-family: 'ralewayregular'; font-size:64px; position:relative;text-align:left;margin:25px auto 20px auto; user-select: none;
+}

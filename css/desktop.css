@@ -1,0 +1,684 @@
+body {
+    font-size: 14px;
+}
+
+main {
+    flex: auto;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+a {
+    color: inherit;
+}
+
+.desktop {
+    font-family: Arial, Helvetica, sans-serif;
+    color: black;
+}
+
+.desktopTop {
+    color: white;
+    background-image: url("../img/background.svg");
+    width: 100%;
+    height: 243px;
+    top: 0;
+    text-align: center;
+}
+
+
+.desktopTop h1 {
+    margin-top: 40px;
+}
+
+.desktopTop p {
+    font-size: 15px;
+    line-height: 20px;
+}
+
+.desktopBottom {
+    background-color: #333333;
+    width: 100%;
+    flex: 1;
+    display: flex;
+}
+
+.desktopBottom p {
+    color: white;
+    margin-top: 18px;
+    margin-left: 30px;
+    font-size: 18px;
+    line-height: 135%;
+}
+
+
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    min-height: 100%;
+    position: relative;
+    line-height: 1.4;
+    font-family: Avenir, Arial, sans-serif;
+}
+
+#main-and-ad-box {
+    display: flex;
+    padding: 0 25px;
+    justify-content: space-between;
+}
+
+#main {
+    width: 0;
+    flex: 1;
+}
+
+body.in-game #ad {
+    display: none !important;
+}
+
+#background {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    background: url(../img/warcraft/header-bfa-bg.jpg) center center;
+    z-index: -1
+}
+
+body[version="classic"] #background {
+    background: url(../img/warcraft/header-classic-bg.jpg) center center;
+}
+
+#wrapper {
+    min-width: 1024px;
+    min-height: 100%;
+    position: relative;
+}
+
+#main-menu {
+    border: none;
+    border-bottom: 1px solid #555555;
+    position: relative;
+    z-index: 11000;
+    padding: 2px;
+}
+
+#main-menu ul {
+    z-index: 11000;
+}
+
+.right {
+    float: right !important;
+}
+
+#header-image {
+    padding-top: 5px
+}
+
+.tagline {
+    font-family: Avenir, Arial, sans-serif;
+    font-size: 12px;
+    margin-top: -15px;
+    margin-left: 5px;
+    float: left;
+}
+
+#startup-panel {
+    padding: 30px
+}
+
+#startup-panel > img {
+    width: 40px;
+}
+
+a {
+    color: rgb(150, 150, 160);
+}
+
+a:link, a:visited, .link-color {
+    text-decoration: none
+}
+
+body {
+    background-color: black;
+    color: rgb(225, 242, 245);
+    margin: 0;
+    padding: 0;
+    font-size: 13px
+}
+
+#header-bar {
+    border-left: none !important;
+    border-right: none !important;
+    border-top: none !important;
+    border-bottom: 1px solid #333;
+    font-size: 13px;
+    color: #aaaaaa;
+    background-color: black;
+}
+
+#ad {
+    height: 310px;
+    width: 410px;
+    text-align: center;
+    overflow: hidden;
+    position: relative;
+    background-color: black;
+}
+
+.left {
+    float: left
+}
+
+.right {
+    float: right
+}
+
+.bar-item {
+    padding: 6px 10px;
+    cursor: pointer;
+}
+
+.bar-item:hover {
+    background-color: var(--hover-background-color);
+    color: var(--hover-foreground-color);
+}
+
+#content {
+    position: relative;
+    clear: both;
+    text-align: center;
+    margin: 0 auto 0 auto;
+}
+
+input:disabled {
+    opacity: 0.4
+}
+
+input, select, textarea, div.directory-file {
+    font: inherit !important;
+    line-height: 1.3 !important;
+}
+
+.ui-state-error {
+    background: none rgba(40, 0, 0, 0.6) !important;
+    color: rgb(225, 242, 245) !important;
+    border: 1px solid red;
+    padding: 1em;
+}
+
+#logincontent, #reportcontent {
+    font-size: 18px;
+    text-align: left;
+    min-height: 300px;
+}
+
+.in-game #reportcontent {
+    min-height: 280px;
+}
+
+#login-form {
+    padding-top: 25px
+}
+
+#account-links {
+    margin: 50px auto;
+    font-size: 12px;
+    text-align: center;
+    display: flex;
+    width: 50%;
+    justify-content: center;
+}
+
+#account-links > a {
+    display: block;
+    margin-left: 20px;
+}
+
+#logo-font { display:flex; flex-direction:row; justify-content:center; align-items:center; }
+
+.login-field, input[type=file], div.directory-file {
+    width: 490px;
+    font-size: 18px !important;
+    vertical-align: middle;
+    opacity: 0.9;
+}
+
+.login-field, div.directory-file {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    height: 36px;
+}
+
+input[type=file] {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+div.directory-file {
+    flex: 1;
+    width: 0;
+    line-height: 36px !important;
+    cursor: pointer;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden
+}
+
+div.clipboard-file {
+    width: 545px;
+}
+
+#clipboard-table {
+    display: none
+}
+
+#guilds-container {
+    margin-top: 10px
+}
+
+.ellipsize {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden
+}
+
+.dialog-table {
+    margin: auto;
+}
+
+label {
+    cursor: pointer;
+}
+
+input[type=checkbox] {
+    display: none
+}
+
+input[type=checkbox] + label {
+    padding: 9px;
+    border-radius: 50px;
+    display: inline-block;
+    vertical-align: middle;
+    position: relative;
+    top: -2px;
+    margin: 10px 7px 10px 0;
+    width: 40px;
+    height: 15px;
+    border: 1px solid black;
+}
+
+input[type=checkbox] + label:after {
+    content: ' ';
+    position: absolute;
+    cursor: pointer;
+    background: #aaa;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 100px;
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.2);
+}
+
+input[type=checkbox] + label:before {
+    content: ' ';
+    position: absolute;
+    cursor: pointer;
+    background: white;
+    top: 2px;
+    left: 2px;
+    z-index: 1;
+    width: 29px;
+    height: 29px;
+    border-radius: 100px;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.5), inset 0 -18px 15px -10px rgba(0, 0, 0, 0.05);
+}
+
+
+input[type=checkbox] + label:active {
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0px 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+input[type=checkbox]:checked + label:before {
+    content: ' ';
+    position: absolute;
+    left: 27px;
+    border-radius: 100px;
+}
+
+#checkbox-8-1 + label, #checkbox-8-2 + label {
+    overflow: hidden;
+}
+
+input[type=checkbox]:checked + label:after {
+    content: ' ';
+    font-size: 1.5em;
+    position: absolute;
+    background: rgb(90, 90, 100);
+}
+
+#button-spinny {
+    opacity: 0.7;
+    margin-top: 2px;
+}
+
+.progress-bar {
+    height: 36px;
+    border: 1px solid black;
+    position: relative;
+    overflow: hidden;
+    background-color: #ccc !important;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#ccc), to(#aaa));
+}
+
+.progress-interior {
+    background-color: rgb(102, 153, 204);
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 0;
+    bottom: 0;
+    background-color: rgb(90, 90, 100) !important;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(90, 90, 100)), to(rgb(50, 50, 60))) !important;
+}
+
+.region-tab, .language-tab, .version-tab {
+    display: inline-block;
+    vertical-align: middle;
+    border: 1px solid #555555;
+    color: white;
+    background-color: black;
+    margin: 2px;
+    padding: 3px 6px;
+    cursor: pointer
+}
+
+.version-tab {
+    margin: 2px 0 2px -2px !important;
+    font-size: 18px;
+    padding: 6px 12px;
+    min-width: 125px;
+    text-align: center
+}
+
+.region-tab:hover, .region-tab[selected="true"], .language-tab:hover, .language-tab[selected="true"], .version-tab:hover, .version-tab[selected="true"] {
+    background-color: var(--hover-background-color);
+    border: var(--hover-border);
+    position: relative;
+}
+
+.region-tab[selected="true"], .language-tab[selected="true"], .version-tab[selected="true"] {
+    position: relative
+}
+
+#fights-list {
+    background-color: black !important;
+    color: white !important;
+    border-radius: 0 !important;
+    font: inherit !important;
+    line-height: 1.3 !important;
+    width: 300px;
+    height: 245px;
+    float: left;
+    border: 1px solid #555555;
+    outline: none !important;
+    margin-right: 10px;
+    cursor: pointer;
+    font-size: 14px !important;
+}
+
+option.hovered {
+    background-color: #004000 !important
+}
+
+#fight-details {
+    margin: 0 5px 10px 0;
+    border: 1px solid #555555;
+    background-color: black;
+    padding: 5px;
+    height: 165px;
+    overflow: hidden;
+    font-size: 13px
+}
+
+.kill {
+    color: rgb(50%, 90%, 40%) !important
+}
+
+.kill:hover {
+    color: rgb(65%, 90%, 55%) !important
+}
+
+.wipe {
+    color: rgb(90%, 50%, 40%) !important
+}
+
+.wipe:hover {
+    color: rgb(90%, 65%, 55%) !important
+}
+
+#report-first-container {
+    display: flex;
+    justify-content: center
+}
+
+.report-first-icon {
+    font-size: 64px !important;
+    margin: 10px;
+}
+
+.report-first-label {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.report-first-desc {
+    font-size: 14px;
+    text-align: center;
+    margin-top: 15px
+}
+
+.report-first-option {
+    display: flex;
+    flex-direction: column;
+    margin: 15px;
+    padding: 10px;
+    align-items: center;
+    cursor: pointer;
+    width: 0;
+    flex: 1
+}
+
+.report-first-option:hover {
+    background-color: var(--hover-background-color);
+    outline: var(--hover-border);
+}
+
+#versions-container {
+    font-size: 14px;
+    display: flex;
+    margin: -10px auto 10px auto;
+    align-items: center;
+    justify-content: center;
+}
+
+#upload-container > div {
+    margin: 13px 5px;
+}
+
+#guild-chooser-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center
+}
+
+#description-container {
+    display: flex;
+}
+
+#description-label {
+    margin-right: 10px;
+}
+
+#file-chooser-row, #directory-chooser-row {
+    display: flex;
+}
+
+#upload-button {
+    margin-right: 0 !important;
+}
+
+#guilds-and-privacy-menu {
+    margin-left: 5px;
+    position: relative;
+    border: none !important;
+    background: none !important;
+    box-shadow:none!important;
+    -webkit-box-shadow:none!important;
+}
+
+#guilds-and-privacy-menu a {
+    font-size: 15px !important;
+    line-height: normal !important;
+}
+
+#guilds-and-privacy-menu > div > li, #privacy-container {
+    cursor: pointer;
+    border: 1px solid #555555;
+    background-color: black;
+    margin-right: 15px
+}
+
+#guild-selection-container table {
+    width: 100%;
+    border-spacing: 0;
+}
+
+#guild-selection-container a {
+    white-space: nowrap !important;
+}
+
+#guild-selection-container span {
+    display: flex;
+    align-items: center;
+}
+
+#guilds-and-privacy-menu > div > li > a, #privacy-container > a {
+    padding-right: 30px !important;
+}
+
+#regions span {
+    display: flex;
+    align-items: center;
+}
+
+.empty-teams {
+    display: none !important;
+}
+
+
+.guild-icon {
+    width: 16px;
+    height: 16px;
+    display: block;
+    margin-right: 10px;
+}
+
+#guild-chooser-description, #description-container {
+    margin-top: 25px !important;
+}
+
+#report-deletion-archival-page {
+    text-align: center;
+}
+
+.in-game #report-deletion-archival-page {
+    margin-top: 15px;
+}
+
+#report-deletion-archival-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 300px;
+}
+
+#deletion-archival-ui { border:1px solid #a0a0a0; background: rgba(0,0,0,0.5); padding:10px; margin:10px; }
+
+#deletion-archival-ui-deletion-options,
+#deletion-archival-ui-archival-options,
+#deletion-archival-ui-deletion-success-message,
+#deletion-archival-ui-archival-success-message {
+    display: none;
+}
+
+.settings {
+    position: absolute;
+    top: 30px;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 30px;
+    display: grid;
+    grid-template-rows: 1fr auto;
+    justify-items: center;
+    grid-gap: 30px;
+    background-color: rgba(0, 0, 0, 0.9);
+    z-index: 100000;
+}
+
+.in-game .settings {
+    top: 0;
+    padding: 20px;
+    justify-content: space-between;
+    grid-gap: 10px;
+}
+
+.settings__options {
+    font-size: 17px;
+    width: 75%;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    grid-column-gap: 20px;
+    grid-row-gap: 30px;
+    background-color: #111;
+    padding: 30px;
+    border-radius: 4px;
+}
+
+.in-game .settings__options {
+    font-size: 15px;
+    width: 93%;
+    padding: 15px 30px;
+    grid-row-gap: 28px;
+}
+
+.settings__options :nth-child(odd) {
+    text-align: center;
+}
+
+#errorblock, #warningblock {
+    position: absolute;
+    left: 0;
+    right: 0;
+    font-size: 12px;
+    margin: 8px 0;
+    padding: 5px;
+}
+
+#update-progress { margin-left:20px; width:200px; height:20px; }
+#update-downloading, #update-downloaded { display:none; }
+#update-downloading-interior { display:flex; flex-direction:row; justify-content: center; }
+.update-link { font-weight:  bold; color:#a0a0a0; }
+#update-strip { display:none; font-size:15px; padding:10px; background-color:var(--hover-background-color); border-top:1px solid var(--hover-foreground-color); text-align:center}

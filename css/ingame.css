@@ -1,0 +1,108 @@
+.in-game {
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+}
+
+body {
+    background-color: rgb(0, 0, 0);
+    margin: 0 !important;
+    font-size: 11px;
+}
+
+body.in-game {
+    border-top: none !important;
+}
+
+#in-game {
+    border: 1px solid #a0a0a0;
+    min-height: 100vh;
+    box-sizing: border-box
+}
+
+main {
+    padding: 5px;
+    font-size: 11px;
+}
+
+#toolbar {
+    display: flex;
+    position: relative;
+    justify-content: space-between;
+    align-items: stretch;
+    height: 50px;
+}
+
+#notification {
+    display: none;
+    height: calc(100vh - 13px);
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    text-align: center;
+    padding: 0 5px;
+}
+
+#notification-text {
+    font-size: 16px;
+}
+
+#hotkey-help {
+    display: none;
+    height: 50px;
+    align-items: center;
+    padding: 0 5px;
+}
+
+#footer {
+    padding: 6px 0;
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-gap: 8px;
+    justify-content: space-evenly;
+    font-size: 10px;
+    border-top: 1px solid #555555;
+}
+
+.hotkey-description, .hotkey-edit, .hotkey-help {
+    padding: 0 8px;
+}
+
+.hotkey-edit:hover, .hotkey-help:hover {
+    cursor: pointer;
+}
+
+.hotkey-edit, .hotkey-edit:visited {
+    color: white;
+    text-decoration: none;
+}
+
+.hotkey-help {
+    font-size: 16px !important;
+    margin-top: -3px;
+}
+
+.toolbar-item {
+    display: flex;
+    flex-direction: column;
+    margin: 5px;
+    text-align: center;
+    align-items: center;
+    user-select: none;
+    cursor: pointer;
+    height: 40px;
+}
+
+.toolbar-icon {
+    font-size: 28px !important;
+    margin-bottom: 5px;
+}
+
+.toolbar-badge {
+    display: none;
+    position: absolute;
+    top: 0;
+    background-color: red;
+    padding: 2px 5px;
+    border-radius: 100%;
+    margin-left: 14px;
+}

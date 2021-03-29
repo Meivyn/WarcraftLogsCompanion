@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" class="app-header">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="../../css/general.css">
+  <link rel="stylesheet" href="../../css/ingame.css">
+  <link rel="stylesheet" href="../../css/warcraft/ingame.css">
+  <script>
+    let mainWindow = overwolf.windows.getMainWindow();
+    let lang = mainWindow.lang;
+    let game = mainWindow.game;
+    let storage = mainWindow.storage;
+  </script>
+</head>
+<body class="in-game">
+
+<div id="in-game">
+  <main>
+    <div id="toolbar">
+      <div class="toolbar-item" id="livelog-button">
+        <div class="toolbar-icon zmdi zmdi-play">
+        </div>
+        <div class="toolbar-text"><script>document.write(lang.trans('livelog_button'))</script></div>
+      </div>
+      <div class="toolbar-item" id="livelog-processing-button" style="display: none">
+        <div class="toolbar-icon zmdi zmdi-spinner zmdi-hc-spin">
+        </div>
+        <div class="toolbar-text"><script>document.write(lang.trans('livelog_button'))</script></div>
+      </div>
+      <div class="toolbar-item" id="reports-button">
+        <div class="toolbar-icon zmdi zmdi-view-list">
+        </div>
+        <div class="toolbar-text"><script>document.write(lang.trans('reports'))</script></div>
+      </div>
+      <div class="toolbar-item" id="characters-button">
+        <div class="toolbar-badge" id="characters-badge"></div>
+        <div class="toolbar-icon zmdi zmdi-accounts">
+        </div>
+        <div class="toolbar-text"><script>document.write(lang.trans('characters'))</script></div>
+      </div>
+      <div class="toolbar-item" id="guilds-button">
+        <div class="toolbar-icon zmdi zmdi-calendar">
+        </div>
+        <div class="toolbar-text"><script>document.write(lang.trans('guilds'))</script></div>
+      </div>
+    </div>
+    <div id="notification">
+      <div id="notification-text"></div>
+      <button id="notification-dismiss-button"><script>document.write(lang.trans('ok_button'))</script></button>
+    </div>
+    <div id="hotkey-help"></div>
+  </main>
+
+  <div id="footer">
+    <div class="hotkey-description">
+      <script>document.write(lang.trans('show_hide_overlay'))</script>
+      <span id="toggle-visibility-hotkey"></span>
+    </div>
+    <a class="hotkey-edit" id="edit-toggle-visibility-hotkey" href="overwolf://settings/hotkeys">
+      [<script>document.write(lang.trans('edit'))</script>]
+    </a>
+    <div></div>
+    <div class="hotkey-description">
+      <script>document.write(lang.trans('call_wipe'))</script>
+      <span id="call-wipe-hotkey"></span>
+    </div>
+    <a class="hotkey-edit" id="edit-call-wipe-hotkey" href="overwolf://settings/hotkeys">
+      [<script>document.write(lang.trans('edit'))</script>]
+    </a>
+    <div id="call-wipe-hotkey-help" class="zmdi zmdi-help-outline hotkey-help"></div>
+  </div>
+</div>
+
+<script src="../../lib/require.js"></script>
+<script>
+  require(['in-game-controller'], function (InGameController) {
+    //console.log(`[INIT] in-game module loaded`);
+    const inGameController = new InGameController();
+    inGameController.run();
+  }, function (error) {
+    console.log(`[INIT] failed to load in-game module ${error}`);
+  });
+</script>
+
+</body>
+</html>

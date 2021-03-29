@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="../../css/warcraft/general.css">
+  <link rel="stylesheet" href="../../css/header.css">
+  <link rel="stylesheet" href="../../css/reports.css">
+  <script>
+    let mainWindow = overwolf.windows.getMainWindow();
+    let lang = mainWindow.lang;
+    let game = mainWindow.game;
+    let storage = mainWindow.storage;
+    document.title = lang.trans('reports_viewer');
+  </script>
+  <script src="../../scripts/3rdparty/jquery.min.js"></script>
+  <script src="../../scripts/3rdparty/jquery-ui.min.js"></script>
+  <script src="../../scripts/3rdparty/smartmenus.min.js"></script>
+</head>
+<body>
+<!-- -------------------------------- Header ------------------------------- -->
+
+<header class="app-header">
+  <h1 style="padding-left:20px"><script>document.write(lang.trans('reports_viewer'))</script></h1>
+  <div class="window-controls-group">
+   <button class="icon window-control window-control-close" id="closeButton">
+      <svg>
+          <use xlink:href="/img/header_icons.svg#window-control_close" />
+      </svg>
+    </button>
+  </div>
+</header>
+
+<!-- --------------------------------- Main -------------------------------- -->
+<main>
+  <div id="main-and-ad-box">
+    <div id="main">
+
+      <div class="report-tab window-controls-group">
+        <button class="icon window-control" id="back-button">
+          <span class="zmdi zmdi-arrow-left"></span>
+        </button>
+        <button class="icon window-control" id="forward-button">
+          <span class="zmdi zmdi-arrow-right"></span>
+        </button>
+        <button class="icon window-control" id="refresh-button">
+          <span class="zmdi zmdi-refresh"></span>
+        </button>
+      </div>
+
+      <iframe src="./blank.html" id="report-frame" allowfullscreen sandbox="allow-scripts allow-modals allow-forms allow-same-origin"></iframe>
+   </div>
+    <div id="right-sidebar">
+      <div id="recent-reports">
+        <div id="recent-reports-caption">
+          <script>document.write(lang.trans('recent_reports'))</script>
+           <span class="zmdi zmdi-refresh" id="recent-reports-reload"></span>
+        </div>
+        <div id="recent-reports-contents" class="scroller"></div>
+      </div>
+      <div id="ad"></div>
+    </div>
+  </div>
+
+</main>
+
+<script src="../../lib/require.js"></script>
+<script>
+  require(['reports-controller'], function (ReportsController) {
+    // console.log(`[INIT] reports module loaded`);
+    const reportsController = new ReportsController();
+    reportsController.run();
+  }, function (error) {
+    console.log(`[INIT] failed to load reports module ${error}`);
+  });
+</script>
+
+<script>document.body.setAttribute('version', mainWindow.storage.version())</script>
+       
+</body>
+</html>
